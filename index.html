@@ -1,5 +1,100 @@
-<html>
+Meme 6-7 (Six Seven)  
+  
+\* {  
+box-sizing: border-box;  
+margin: 0;  
+padding: 0;  
+}  
+body {  
+background-color: #000000;  
+color: #ffffff;  
+font-family: 'Impact', 'Arial Black', sans-serif;  
+display: flex;  
+flex-direction: column;  
+justify-content: center;  
+align-items: center;  
+height: 100vh;  
+overflow: hidden;  
+text-align: center;  
+user-select: none;  
+}  
+.container {  
+cursor: pointer;  
+padding: 20px;  
+}  
+h1 {  
+font-size: 12rem;  
+color: #00ffcc;  
+text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;  
+letter-spacing: -5px;  
+transition: transform 0.1s ease;  
+}  
+/\* Animação que imita o balanço das mãos do meme \*/  
+.brainrot-shake {  
+animation: handSign 0.6s infinite alternate ease-in-out;  
+}  
+@keyframes handSign {  
+0% { transform: translateY(-20px) rotate(-5deg); }  
+100% { transform: translateY(20px) rotate(5deg); }  
+}  
+.subtitle {  
+font-family: 'Arial', sans-serif;  
+font-size: 1.5rem;  
+color: #aaaaaa;  
+margin-top: 20px;  
+text-transform: uppercase;  
+letter-spacing: 2px;  
+}  
+.pop-text {  
+position: absolute;  
+font-size: 3rem;  
+color: #ff00ff;  
+text-shadow: 2px 2px #000;  
+font-weight: bold;  
+pointer-events: none;  
+animation: floatUp 0.8s ease-out forwards;  
+}  
+@keyframes floatUp {  
+0% { opacity: 1; transform: translateY(0) scale(1); }  
+100% { opacity: 0; transform: translateY(-100px) scale(1.5); }  
+}  
+  
+  
 
+  
+67  
+Clique na tela para invocar o Brainrot  
 
+  
+function triggerMeme(event) {  
+const numElement = document.getElementById('number');
 
-</html>
+// Efeito visual rápido no clique  
+numElement.style.transform = 'scale(0.8)';  
+setTimeout(() => {  
+numElement.style.transform = 'scale(1)';  
+}, 100);
+
+// Criar textos flutuantes com as variações da piada  
+const phrases = \["SIX SEVEN! 🖐️🏽", "DOOT DOOT 📯", "LAMELO BALL 🏀", "BRAINROT 🧠", "6-7! 👋"\];  
+const randomPhrase = phrases\[Math.floor(Math.random() \* phrases.length)\];
+
+const pop = document.createElement('div');  
+pop.className = 'pop-text';  
+pop.innerText = randomPhrase;
+
+// Define a posição baseada no clique do mouse  
+pop.style.left = (event.clientX - 50) + 'px';  
+pop.style.top = (event.clientY - 20) + 'px';
+
+// Cores aleatórias neon para os textos flutuantes  
+const neonColors = \['#ff00ff', '#00ffcc', '#ffff00', '#ff3300', '#00ff00'\];  
+pop.style.color = neonColors\[Math.floor(Math.random() \* neonColors.length)\];
+
+document.body.appendChild(pop);
+
+// Remove o elemento após o fim da animação  
+setTimeout(() => {  
+pop.remove();  
+}, 800);  
+}
